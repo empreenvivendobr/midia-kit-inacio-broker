@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inácio Broker — Mídia Kit 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#F7820A;--gold-l:#FFA940;--gold-d:#C96200;
+  --black:#080808;--b2:#101010;--b3:#181818;--b4:#202020;
+  --w7:rgba(255,255,255,0.72);--w4:rgba(255,255,255,0.4);
+  --w15:rgba(255,255,255,0.15);--w08:rgba(255,255,255,0.08);
+  --g20:rgba(247,130,10,0.2);--g40:rgba(247,130,10,0.4);
+  --nav-h:60px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:var(--nav-h);
+  background:rgba(8,8,8,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--w08);
+}
+.nav-logo{font-family:'Dancing Script',cursive;font-size:24px;font-weight:700;color:var(--gold);text-decoration:none}
+.nav-links{display:none;list-style:none}
+.nav-links a{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--w4);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 18px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:0.06em;text-decoration:none;white-space:nowrap;transition:transform .2s,background .2s;min-height:44px;display:flex;align-items:center}
+.nav-cta:hover{transform:translateY(-1px);background:var(--gold-l)}
+.nav-hamburger{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:8px;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;line-height:1}
+.nav-drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(8,8,8,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--w08);z-index:99;padding:4px 0}
+.nav-drawer.open{display:block}
+.nav-drawer a{display:block;padding:16px 24px;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--w7);text-decoration:none;border-bottom:1px solid var(--w08)}
+.nav-drawer a:last-child{border-bottom:none}
+.nav-drawer a:hover{color:var(--gold)}
+
+/* ─── COMMON ─── */
+.s-tag{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.s-title{font-family:'Dancing Script',cursive;font-size:clamp(36px,9vw,68px);font-weight:700;color:#fff;line-height:1;margin-bottom:16px}
+.s-title em{color:var(--gold);font-style:normal}
+.s-body{font-size:14px;color:var(--w7);line-height:1.8}
+.ftag{position:absolute;bottom:20px;right:24px;font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:0.3em;color:var(--w15);text-transform:uppercase}
+.fyear{position:absolute;bottom:20px;left:24px;font-size:10px;font-weight:500;color:var(--w15);letter-spacing:0.08em}
+
+/* ─── HERO (mobile-first) ─── */
+.hero{display:flex;flex-direction:column;min-height:100svh;position:relative;overflow:hidden}
+.hero-photo{flex:0 0 58vh;position:relative;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(0.9) contrast(1.06)}
+.hero-photo-vignette{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--black) 100%)}
+.hero-photo-bottom{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--black),transparent)}
+.hero-deco{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,22vw,320px);color:var(--gold);opacity:0.04;pointer-events:none;letter-spacing:-0.03em;top:50%;left:5%;transform:translateY(-50%);white-space:nowrap;z-index:0}
+.hero-content{flex:1;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 24px 48px}
+.hero-tag{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.4em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
+.hero-name{font-family:'Dancing Script',cursive;font-size:clamp(48px,14vw,100px);font-weight:700;color:#fff;line-height:0.92;margin-bottom:14px}
+.hero-name em{color:var(--gold);font-style:normal}
+.hero-role{font-family:'Bebas Neue',sans-serif;font-size:clamp(13px,3.8vw,22px);letter-spacing:0.2em;color:var(--w4)}
+.hero-divider{width:40px;height:2px;background:linear-gradient(to right,var(--gold),transparent);margin-top:24px}
+.hero-scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:9px;letter-spacing:0.2em;color:var(--w4);text-transform:uppercase;z-index:3;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+.scroll-line{width:1px;height:24px;background:linear-gradient(to bottom,var(--gold),transparent)}
+
+/* ─── SOBRE (mobile) ─── */
+.sobre{display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--b2)}
+.sobre-photo{position:relative;overflow:hidden;height:56vw;min-height:260px}
+.sobre-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;inset:0;filter:brightness(0.85)}
+.sobre-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--b2) 100%)}
+.sobre-content{padding:32px 20px 52px;display:flex;flex-direction:column;position:relative;z-index:1}
+.sobre-deco{display:none}
+.sobre-body{font-size:14px;color:var(--w7);line-height:1.85;margin-bottom:28px}
+.valores{display:flex;flex-direction:column;gap:12px}
+.vitem{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--w08);border:1px solid var(--w15);border-radius:12px;transition:border-color .2s}
+.vitem:hover{border-color:var(--g40)}
+.vicon{width:32px;height:32px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:var(--black);font-weight:800}
+.vtitle{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
+.vdesc{font-size:12px;color:var(--w4);line-height:1.5}
+
+/* ─── NÚMEROS (mobile) ─── */
+.numeros{background:var(--black);padding:52px 20px 60px;position:relative;overflow:hidden;border-top:1px solid var(--w08);border-bottom:1px solid var(--w08)}
+.numeros::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(247,130,10,0.04) 0%,transparent 70%);pointer-events:none}
+.num-header{text-align:center;margin-bottom:40px;position:relative;z-index:1}
+.num-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;z-index:1;border:1px solid var(--w08);border-radius:16px;overflow:hidden}
+.num-item{padding:28px 20px;border-right:1px solid var(--w08);border-bottom:1px solid var(--w08);position:relative}
+.num-item:nth-child(even){border-right:none}
+.num-item:nth-child(3),.num-item:nth-child(4){border-bottom:none}
+.num-accent{width:24px;height:2px;background:var(--gold);margin-bottom:14px}
+.num-val{font-size:clamp(28px,8vw,68px);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.03em;margin-bottom:8px}
+.num-val em{color:var(--gold);font-style:normal}
+.num-lbl{font-size:10px;font-weight:600;color:var(--w4);letter-spacing:0.12em;text-transform:uppercase;line-height:1.6}
+
+/* ─── INSTAGRAM (mobile) ─── */
+.instagram{background:linear-gradient(160deg,#120800 0%,#200f00 40%,#120800 100%);padding:52px 20px 60px;position:relative;overflow:hidden}
+.instagram::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(247,130,10,0.025) 0,rgba(247,130,10,0.025) 1px,transparent 1px,transparent 52px);pointer-events:none}
+.ig-header{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;position:relative;z-index:1}
+.ig-platform{font-family:'Dancing Script',cursive;font-size:clamp(38px,11vw,80px);font-weight:700;color:var(--gold);line-height:1}
+.ig-period{font-size:11px;font-weight:500;color:var(--w4);letter-spacing:0.1em;margin-top:6px}
+.ig-main{text-align:left}
+.ig-main-val{font-size:clamp(32px,9vw,80px);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.03em}
+.ig-main-lbl{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
+.ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1}
+.ig-card{background:rgba(255,255,255,0.05);border:1px solid var(--g20);border-radius:14px;padding:18px 16px;transition:border-color .2s,background .2s}
+.ig-card:hover{border-color:var(--g40);background:rgba(247,130,10,0.06)}
+.ig-card.hi{background:rgba(247,130,10,0.1);border-color:rgba(247,130,10,0.35)}
+.ig-val{font-size:clamp(20px,6vw,48px);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.02em;margin-bottom:6px}
+.ig-lbl{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px}
+.ig-sub{font-size:11px;color:var(--w4)}
+.ig-prints{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px;position:relative;z-index:1}
+.ig-print{border-radius:10px;overflow:hidden;border:1px solid var(--w08);aspect-ratio:9/16}
+.ig-print img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.ig-print:hover img{transform:scale(1.04)}
+
+/* ─── PÚBLICO (mobile) ─── */
+.publico{background:var(--b3);padding:52px 20px 60px;position:relative;overflow:hidden}
+.pub-3col{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.pub-block{background:var(--w08);border:1px solid var(--w15);border-radius:18px;padding:28px 22px;position:relative;overflow:hidden}
+.pub-block-title{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:22px}
+.gender-nums{display:flex;margin-bottom:20px}
+.gender-col{flex:1;text-align:center;padding:12px 0}
+.gender-col-val{font-size:clamp(32px,10vw,52px);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.02em;margin-bottom:6px}
+.gender-col-lbl{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase}
+.gender-sep{width:1px;background:var(--w15);align-self:stretch;margin:6px 0}
+.gender-bar-wrap{height:6px;border-radius:3px;overflow:hidden;background:var(--w08);display:flex}
+.gender-bar-m{height:100%;background:var(--gold);border-radius:3px 0 0 3px}
+.gender-bar-f{height:100%;background:rgba(255,255,255,0.25);border-radius:0 3px 3px 0}
+.gender-legend{display:flex;justify-content:space-between;margin-top:8px}
+.gender-legend span{font-size:10px;color:var(--w4)}
+.pub-bar-item{margin-bottom:14px}
+.pub-bar-item:last-child{margin-bottom:0}
+.pub-bar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.pub-bar-lbl{font-size:12px;font-weight:500;color:var(--w7)}
+.pub-bar-pct{font-size:13px;font-weight:700;color:#fff}
+.pub-bar-track{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.pub-bar-fill{height:100%;background:var(--gold);border-radius:2px}
+.pub-sub-stat{margin-top:20px;padding-top:16px;border-top:1px solid var(--w08)}
+.pub-sub-stat-lbl{font-size:10px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px}
+.pub-sub-stat-val{font-size:clamp(26px,8vw,36px);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px}
+.pub-sub-stat-desc{font-size:11px;color:var(--w4);line-height:1.5}
+.pub-deco{position:absolute;bottom:-16px;right:-8px;font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--gold);opacity:0.05;pointer-events:none;line-height:1}
+
+/* ─── INTERAÇÕES (mobile) ─── */
+.interacoes{background:var(--gold);padding:52px 20px 60px;position:relative;overflow:hidden}
+.interacoes::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,0.03) 0,rgba(0,0,0,0.03) 1px,transparent 1px,transparent 52px);pointer-events:none}
+.int-inner{position:relative;z-index:1}
+.int-header-row{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.int-title{font-family:'Dancing Script',cursive;font-size:clamp(40px,11vw,70px);font-weight:700;color:var(--black);line-height:1}
+.int-sub{font-size:11px;font-weight:500;color:rgba(0,0,0,0.55);letter-spacing:0.1em;margin-top:6px}
+.int-total-block{margin-bottom:24px}
+.int-total-val{font-size:clamp(36px,10vw,64px);font-weight:800;color:var(--black);line-height:1;letter-spacing:-0.02em}
+.int-total-lbl{font-size:11px;font-weight:700;color:rgba(0,0,0,0.55);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.int-card{background:rgba(0,0,0,0.1);border:1px solid rgba(0,0,0,0.1);border-radius:14px;padding:20px 16px}
+.int-val{font-size:clamp(20px,5vw,44px);font-weight:800;color:var(--black);line-height:1;letter-spacing:-0.02em;margin-bottom:6px}
+.int-lbl{font-size:10px;font-weight:600;color:rgba(0,0,0,0.6);letter-spacing:0.1em;text-transform:uppercase}
+.int-right{margin-top:20px}
+.int-print-single{border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,0.12)}
+.int-print-single img{width:100%;display:block;object-fit:cover}
+
+/* ─── TOP REELS (mobile) ─── */
+.reels{background:var(--b2);padding:52px 20px 60px;position:relative;overflow:hidden}
+.reels-deco{position:absolute;right:-3%;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,22vw,240px);color:var(--gold);opacity:0.04;pointer-events:none;letter-spacing:-0.02em}
+.reels-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;position:relative;z-index:1}
+.reel-card{border-radius:14px;overflow:hidden;border:1px solid var(--w15);aspect-ratio:9/18;position:relative;background:var(--b3);display:block;text-decoration:none}
+.reel-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.reel-card:hover img{transform:scale(1.04)}
+.reel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.2) 50%,transparent 100%)}
+.reel-info{position:absolute;bottom:0;left:0;right:0;padding:14px 12px;z-index:1}
+.reel-views{font-size:clamp(14px,4vw,26px);font-weight:800;color:#fff;line-height:1;margin-bottom:3px}
+.reel-lbl{font-size:9px;font-weight:600;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase}
+.reel-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:36px;height:36px;background:rgba(247,130,10,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--black);transition:transform .2s,background .2s}
+.reel-card:hover .reel-play{transform:translate(-50%,-60%) scale(1.1);background:var(--gold)}
+
+/* ─── OPORTUNIDADES (mobile) ─── */
+.oportunidades{background:var(--b4);padding:52px 20px 60px;position:relative;overflow:hidden}
+.op-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:32px}
+.op-item{display:flex;align-items:flex-start;gap:16px;padding:20px;background:var(--w08);border:1px solid var(--w15);border-radius:14px;transition:border-color .2s,background .2s}
+.op-item:hover{border-color:var(--g40);background:rgba(247,130,10,0.05)}
+.op-icon{width:40px;height:40px;min-width:40px;min-height:40px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.op-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.op-desc{font-size:13px;color:var(--w7);line-height:1.55}
+.op-deco{position:absolute;left:-3%;bottom:-10%;font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,14vw,200px);color:var(--gold);opacity:0.03;pointer-events:none;letter-spacing:-0.02em}
+
+/* ─── CTA (mobile) ─── */
+.cta{background:var(--black);display:flex;flex-direction:column;min-height:100svh;position:relative;overflow:hidden}
+.cta-image{flex:0 0 55vh;position:relative;overflow:hidden}
+.cta-image img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.85) contrast(1.1)}
+.cta-image-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(8,8,8,0.5) 65%,var(--black) 100%)}
+.cta-radial{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 70%,rgba(247,130,10,0.06) 0%,transparent 70%);pointer-events:none;z-index:1}
+.cta-ring{display:none}
+.cta-content{flex:1;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:32px 24px 52px}
+.cta-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.5em;color:var(--gold);margin-bottom:16px;text-transform:uppercase}
+.cta-title{font-family:'Dancing Script',cursive;font-size:clamp(52px,15vw,110px);font-weight:700;color:#fff;line-height:0.95;margin-bottom:20px}
+.cta-title em{color:var(--gold);font-style:normal}
+.cta-body{font-size:15px;color:var(--w7);line-height:1.7;margin-bottom:36px;max-width:360px}
+.cta-buttons{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
+.cta-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--black);padding:18px 40px;border-radius:50px;font-size:14px;font-weight:700;letter-spacing:0.06em;text-decoration:none;min-height:56px;width:100%;max-width:360px;transition:transform .2s,background .2s,box-shadow .2s}
+.cta-wa:hover{transform:translateY(-2px);background:var(--gold-l);box-shadow:0 12px 40px rgba(247,130,10,0.3)}
+.cta-ig{font-size:13px;color:var(--w4);letter-spacing:0.05em}
+.cta-ig strong{color:var(--gold)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{animation:fadeUp .6s ease .1s both}
+.hero-name{animation:fadeUp .6s ease .25s both}
+.hero-role{animation:fadeUp .6s ease .35s both}
+.hero-divider{animation:fadeUp .6s ease .45s both}
+
+/* ─── TABLET 640px ─── */
+@media(min-width:640px){
+  .ig-grid{grid-template-columns:1fr 1fr 1fr}
+  .sobre-photo{height:38vw;min-height:300px}
+  .op-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ─── DESKTOP 1024px ─── */
+@media(min-width:1024px){
+  :root{--nav-h:64px}
+  nav{padding:0 60px}
+  .nav-logo{font-size:28px}
+  .nav-links{display:flex;gap:32px}
+  .nav-hamburger{display:none}
+  .nav-drawer{display:none!important}
+
+  /* HERO desktop */
+  .hero{display:grid;grid-template-columns:47% 53%;min-height:100vh;flex-direction:unset}
+  .hero-photo{flex:unset;height:auto}
+  .hero-photo img{object-position:center top}
+  .hero-photo-vignette{background:linear-gradient(to right,transparent 50%,var(--black) 100%)}
+  .hero-photo-bottom{height:200px}
+  .hero-deco{font-size:clamp(120px,20vw,320px);left:10%}
+  .hero-content{align-items:flex-start;text-align:left;justify-content:flex-start;padding:clamp(72px,28vh,360px) 80px 60px 40px}
+  .hero-tag{font-size:12px}
+  .hero-name{font-size:clamp(52px,6.5vw,100px)}
+  .hero-role{font-size:clamp(14px,1.8vw,22px)}
+  .hero-divider{width:56px}
+
+  /* SOBRE desktop */
+  .sobre{display:grid;grid-template-columns:48% 52%;flex-direction:unset}
+  .sobre-photo{height:auto;min-height:700px}
+  .sobre-photo img{position:absolute;inset:0}
+  .sobre-photo-overlay{background:linear-gradient(to right,transparent 55%,var(--b2) 100%)}
+  .sobre-content{padding:100px 80px 100px 50px}
+  .sobre-deco{display:block;position:absolute;right:-3%;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,14vw,200px);color:var(--gold);opacity:0.04;pointer-events:none;letter-spacing:-0.02em}
+
+  /* NÚMEROS desktop */
+  .numeros{padding:80px}
+  .num-grid{grid-template-columns:repeat(4,1fr);border:none;border-radius:0;overflow:visible}
+  .num-item{padding:40px 32px;border-right:1px solid var(--w08);border-bottom:none}
+  .num-item:nth-child(even){border-right:1px solid var(--w08)}
+  .num-item:nth-child(3){border-bottom:none}
+  .num-item:nth-child(4){border-right:none;border-bottom:none}
+  .num-accent{width:32px;margin-bottom:20px}
+  .num-val{font-size:clamp(40px,4.5vw,68px)}
+
+  /* INSTAGRAM desktop */
+  .instagram{padding:100px 80px}
+  .ig-header{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:0;margin-bottom:60px}
+  .ig-main{text-align:right}
+  .ig-main-val{font-size:clamp(40px,5.5vw,80px)}
+  .ig-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .ig-card{padding:28px 24px}
+  .ig-val{font-size:clamp(26px,3vw,48px)}
+  .ig-prints{grid-template-columns:repeat(4,1fr);gap:10px;margin-top:40px}
+
+  /* PÚBLICO desktop */
+  .publico{padding:100px 80px}
+  .pub-3col{display:grid;grid-template-columns:1fr 1.3fr 1.3fr;gap:20px;flex-direction:unset}
+
+  /* INTERAÇÕES desktop — left stats + right print */
+  .interacoes{padding:100px 80px}
+  .int-inner{display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:start}
+  .int-header-row{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:0;margin-bottom:32px}
+  .int-total-block{text-align:right;margin-bottom:0}
+  .int-total-val{font-size:clamp(36px,4.5vw,64px);text-align:right}
+  .int-total-lbl{text-align:right}
+  .int-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .int-card{padding:24px 20px}
+  .int-val{font-size:clamp(22px,2.8vw,44px)}
+  .int-right{margin-top:0;display:flex;align-items:center}
+  .int-print-single{border-radius:16px;max-height:480px;overflow:hidden}
+  .int-print-single img{width:100%;object-fit:cover;max-height:480px}
+
+  /* REELS desktop */
+  .reels{padding:100px 80px}
+  .reels-grid{grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+  .reel-card{border-radius:16px}
+  .reel-play{width:44px;height:44px;font-size:16px}
+  .reel-views{font-size:clamp(18px,2vw,26px)}
+
+  /* OPORTUNIDADES desktop — 2x2 grid */
+  .oportunidades{padding:100px 80px}
+  .op-grid{grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+
+  /* CTA desktop */
+  .cta{display:grid;grid-template-columns:1fr 1fr;height:100vh;min-height:auto;overflow:hidden;flex-direction:unset}
+  .cta-image{flex:unset;height:100%}
+  .cta-image img{object-position:center top;height:100%;width:100%}
+  .cta-image-overlay{background:linear-gradient(to right,rgba(0,0,0,0.2) 0%,rgba(8,8,8,0.65) 70%,var(--black) 100%)}
+  .cta-ring{display:block;position:absolute;width:500px;height:500px;border:1px solid rgba(247,130,10,0.07);border-radius:50%;top:50%;right:-8%;transform:translateY(-50%);z-index:1}
+  .cta-content{align-items:flex-start;text-align:left;padding:clamp(40px,6vh,80px) 80px clamp(40px,6vh,80px) 56px;justify-content:center}
+  .cta-title{font-size:clamp(44px,6vw,96px)}
+  .cta-body{margin-left:0;margin-right:0;margin-bottom:clamp(24px,4vh,48px);font-size:14px}
+  .cta-buttons{align-items:flex-start}
+  .cta-wa{width:auto;max-width:none;padding:14px 40px;justify-content:flex-start}
+
+  .ftag{bottom:28px;right:48px;font-size:11px;letter-spacing:0.35em}
+  .fyear{bottom:28px;left:48px;font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Inácio Broker</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#instagram">Dados</a></li>
+    <li><a href="#publico">Público</a></li>
+    <li><a href="#oportunidades">Parcerias</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="nav-cta" href="https://wa.me/+5521970918421?text=Ol%C3%A1%20Matheus%2C%20vi%20seu%20M%C3%ADdia%20Kit%2C%20tenho%20interesse%20em%20fazer%20uma%20publi%2C%20podemos%20conversar%3F" target="_blank">Entrar em contato</a>
+    <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="#sobre" onclick="closeNav()">Sobre</a>
+  <a href="#instagram" onclick="closeNav()">Dados</a>
+  <a href="#publico" onclick="closeNav()">Público</a>
+  <a href="#oportunidades" onclick="closeNav()">Parcerias</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-photo">
+    <img src="assets/img-01.webp" alt="Matheus Inácio — Inácio Broker">
+    <div class="hero-photo-vignette"></div>
+    <div class="hero-photo-bottom"></div>
+  </div>
+  <div class="hero-deco">INÁCIO</div>
+  <div class="hero-content">
+    <div class="hero-tag">Mídia Kit · 2026</div>
+    <div class="hero-name">Inácio<br><em>Broker</em></div>
+    <div class="hero-role">Corretor · Influenciador Local</div>
+    <div class="hero-divider"></div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>role para baixo</div>
+  <div class="ftag">@inaciobroker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-photo">
+    <img src="assets/img-02.webp" alt="Matheus Inácio">
+    <div class="sobre-photo-overlay"></div>
+  </div>
+  <div class="sobre-content">
+    <div class="sobre-deco">NI</div>
+    <div class="s-tag">Quem sou eu</div>
+    <div class="s-title">Sobre <em>mim</em></div>
+    <p class="sobre-body">Me chamo <strong style="color:#fff">Matheus Inácio</strong>, 25 anos, nascido e criado em Nova Iguaçu. Comecei com foco em melhorar meus resultados como corretor, mas percebi o quão a cidade é desvalorizada pelo próprio morador.<br><br>De forma bem-humorada — com sarcasmo e ironias — apresento Nova Iguaçu com meus olhos: uma cidade gigante, com potencial de crescimento e valorização constante. Tenho relatos reais de pessoas que mudaram o pensamento sobre a cidade através do meu perfil.</p>
+    <div class="valores">
+      <div class="vitem"><div class="vicon">★</div><div><div class="vtitle">Autenticidade</div><div class="vdesc">Conteúdo real, produzido na rua, sem filtros — conectado com quem vive Nova Iguaçu de verdade.</div></div></div>
+      <div class="vitem"><div class="vicon">▲</div><div><div class="vtitle">Valorização local</div><div class="vdesc">O maior defensor de Nova Iguaçu no Instagram — e o público sente isso.</div></div></div>
+      <div class="vitem"><div class="vicon">◆</div><div><div class="vtitle">Autoridade imobiliária</div><div class="vdesc">Corretor certificado e referência em mercado imobiliário da Baixada Fluminense.</div></div></div>
+    </div>
+  </div>
+  <div class="ftag">@inaciobroker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="numeros" id="numeros">
+  <div class="num-header">
+    <div class="s-tag" style="text-align:center">Resultados · @inaciobroker</div>
+    <div class="s-title" style="text-align:center">Números <em>reais</em></div>
+  </div>
+  <div class="num-grid">
+    <div class="num-item"><div class="num-accent"></div><div class="num-val">13,8<em>mil</em></div><div class="num-lbl">Seguidores</div></div>
+    <div class="num-item"><div class="num-accent"></div><div class="num-val">7<em>mi+</em></div><div class="num-lbl">Visualizações totais</div></div>
+    <div class="num-item"><div class="num-accent"></div><div class="num-val">1,47<em>mi</em></div><div class="num-lbl">Contas alcançadas</div></div>
+    <div class="num-item"><div class="num-accent"></div><div class="num-val">232<em>k</em></div><div class="num-lbl">Melhor reel</div></div>
+  </div>
+  <div class="ftag">@inaciobroker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<!-- INSTAGRAM STATS -->
+<section class="instagram" id="instagram">
+  <div class="ig-header">
+    <div>
+      <div class="s-tag">Instagram · @inaciobroker</div>
+      <div class="ig-platform">instagram</div>
+      <div class="ig-period">Últimos 30 dias · fev – mar 2026</div>
+    </div>
+    <div class="ig-main">
+      <div class="ig-main-val">7.008.400</div>
+      <div class="ig-main-lbl">Visualizações totais (dez–mar)</div>
+    </div>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-card hi"><div class="ig-val">13,8mil</div><div class="ig-lbl">Seguidores</div><div class="ig-sub">+11,8% em 30 dias</div></div>
+    <div class="ig-card hi"><div class="ig-val">1,168mi</div><div class="ig-lbl">Visualizações</div><div class="ig-sub">Últimos 30 dias</div></div>
+    <div class="ig-card hi"><div class="ig-val">332,9mil</div><div class="ig-lbl">Contas alcançadas</div><div class="ig-sub">Últimos 30 dias</div></div>
+    <div class="ig-card"><div class="ig-val">15,1mil</div><div class="ig-lbl">Visitas ao perfil</div><div class="ig-sub">Últimos 30 dias</div></div>
+    <div class="ig-card"><div class="ig-val">93,7%</div><div class="ig-lbl">Alcance via Reels</div><div class="ig-sub">Formato principal</div></div>
+    <div class="ig-card"><div class="ig-val">76,3%</div><div class="ig-lbl">Não-seguidores</div><div class="ig-sub">Alcance orgânico puro</div></div>
+  </div>
+  <div class="ig-prints">
+    <div class="ig-print"><img src="assets/img-07.webp" alt="Print 1"></div>
+    <div class="ig-print"><img src="assets/img-10.webp" alt="Print 2"></div>
+    <div class="ig-print"><img src="assets/img-09.webp" alt="Print 3"></div>
+    <div class="ig-print"><img src="assets/img-05.webp" alt="Print 4"></div>
+  </div>
+  <div class="ftag" style="color:rgba(247,130,10,0.3)">@inaciobroker</div>
+  <div class="fyear" style="color:rgba(247,130,10,0.3)">2026</div>
+</section>
+
+<!-- PÚBLICO -->
+<section class="publico" id="publico">
+  <div class="s-tag">Audiência</div>
+  <div class="s-title">Meu <em>público</em></div>
+  <div class="pub-3col">
+    <div class="pub-block">
+      <div class="pub-block-title">Gênero</div>
+      <div class="gender-nums">
+        <div class="gender-col"><div class="gender-col-val">51,5%</div><div class="gender-col-lbl">Homens</div></div>
+        <div class="gender-sep"></div>
+        <div class="gender-col"><div class="gender-col-val">48,5%</div><div class="gender-col-lbl">Mulheres</div></div>
+      </div>
+      <div class="gender-bar-wrap">
+        <div class="gender-bar-m" style="width:51.5%"></div>
+        <div class="gender-bar-f" style="width:48.5%"></div>
+      </div>
+      <div class="gender-legend"><span>♂ Homens</span><span>Mulheres ♀</span></div>
+      <div class="pub-deco">♂</div>
+    </div>
+    <div class="pub-block">
+      <div class="pub-block-title">Faixa etária</div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">25–34 anos</span><span class="pub-bar-pct">33,1%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:100%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">35–44 anos</span><span class="pub-bar-pct">32,4%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:97.9%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">45–54 anos</span><span class="pub-bar-pct">16,1%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:48.6%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">18–24 anos</span><span class="pub-bar-pct">9,5%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:28.7%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">55–64 anos</span><span class="pub-bar-pct">4,8%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:14.5%"></div></div></div>
+      <div class="pub-sub-stat"><div class="pub-sub-stat-lbl">Público 25–44 anos</div><div class="pub-sub-stat-val">65,5%</div><div class="pub-sub-stat-desc">Em idade de decisão de compra</div></div>
+    </div>
+    <div class="pub-block">
+      <div class="pub-block-title">Principais cidades</div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">Nova Iguaçu</span><span class="pub-bar-pct">60,5%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:100%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">Rio de Janeiro</span><span class="pub-bar-pct">15,1%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:25%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">Belford Roxo</span><span class="pub-bar-pct">3,1%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:5.1%"></div></div></div>
+      <div class="pub-bar-item"><div class="pub-bar-head"><span class="pub-bar-lbl">Mesquita</span><span class="pub-bar-pct">3,0%</span></div><div class="pub-bar-track"><div class="pub-bar-fill" style="width:5%"></div></div></div>
+      <div class="pub-sub-stat"><div class="pub-sub-stat-lbl">Concentração local</div><div class="pub-sub-stat-val">60,5%</div><div class="pub-sub-stat-desc">De Nova Iguaçu — o público comprador</div></div>
+    </div>
+  </div>
+  <div class="ftag">@inaciobroker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<!-- INTERAÇÕES -->
+<section class="interacoes" id="interacoes">
+  <div class="int-inner">
+    <div class="int-left">
+      <div class="int-header-row">
+        <div>
+          <div class="s-tag" style="color:rgba(0,0,0,0.5)">Engajamento · Reels</div>
+          <div class="int-title">interações</div>
+          <div class="int-sub">Últimos 30 dias · fev – mar 2026</div>
+        </div>
+        <div class="int-total-block">
+          <div class="int-total-val">75.151</div>
+          <div class="int-total-lbl">Total de interações</div>
+        </div>
+      </div>
+      <div class="int-grid">
+        <div class="int-card"><div class="int-val">49.260</div><div class="int-lbl">Curtidas</div></div>
+        <div class="int-card"><div class="int-val">18.166</div><div class="int-lbl">Compartilhamentos</div></div>
+        <div class="int-card"><div class="int-val">4.520</div><div class="int-lbl">Comentários</div></div>
+        <div class="int-card"><div class="int-val">1.690</div><div class="int-lbl">Salvamentos</div></div>
+        <div class="int-card"><div class="int-val">1.515</div><div class="int-lbl">Reposts</div></div>
+        <div class="int-card" style="background:rgba(0,0,0,0.16)"><div class="int-val">+11,8%</div><div class="int-lbl">Crescimento</div></div>
+      </div>
+    </div>
+    <div class="int-right">
+      <div class="int-print-single">
+        <img src="assets/img-16.webp" alt="Interações Instagram">
+      </div>
+    </div>
+  </div>
+  <div class="ftag" style="color:rgba(0,0,0,0.2)">@inaciobroker</div>
+  <div class="fyear" style="color:rgba(0,0,0,0.2)">2026</div>
+</section>
+
+<!-- TOP REELS -->
+<section class="reels" id="reels">
+  <div class="reels-deco">TOP</div>
+  <div class="s-tag">Conteúdo</div>
+  <div class="s-title">Top <em>Reels</em></div>
+  <p class="s-body" style="max-width:500px;margin-top:8px">Os maiores sucessos nos últimos 3 meses — 100% orgânicos, sem impulsionamento pago.</p>
+  <div class="reels-grid">
+    <a class="reel-card" href="https://www.instagram.com/reel/DTtJl2oDorb/" target="_blank">
+      <img src="assets/reel-1.webp" alt="Reel 232k views">
+      <div class="reel-overlay"></div><div class="reel-play">▶</div>
+      <div class="reel-info"><div class="reel-views">232,5mil</div><div class="reel-lbl">Visualizações</div></div>
+    </a>
+    <a class="reel-card" href="https://www.instagram.com/reel/DTgdcX5jkIb/" target="_blank">
+      <img src="assets/reel-2.webp" alt="Reel 210k views">
+      <div class="reel-overlay"></div><div class="reel-play">▶</div>
+      <div class="reel-info"><div class="reel-views">210,7mil</div><div class="reel-lbl">Visualizações</div></div>
+    </a>
+    <a class="reel-card" href="https://www.instagram.com/reel/DTiOtxADvdr/" target="_blank">
+      <img src="assets/reel-3.webp" alt="Reel 168k views">
+      <div class="reel-overlay"></div><div class="reel-play">▶</div>
+      <div class="reel-info"><div class="reel-views">168,9mil</div><div class="reel-lbl">Visualizações</div></div>
+    </a>
+    <a class="reel-card" href="https://www.instagram.com/reel/DVMhesLDmJx/" target="_blank">
+      <img src="assets/reel-4.webp" alt="Reel 134k views">
+      <div class="reel-overlay"></div><div class="reel-play">▶</div>
+      <div class="reel-info"><div class="reel-views">134mil</div><div class="reel-lbl">Visualizações</div></div>
+    </a>
+  </div>
+  <div class="ftag">@inaciobroker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<!-- OPORTUNIDADES -->
+<section class="oportunidades" id="oportunidades">
+  <div class="op-deco">OP</div>
+  <div class="s-tag">Parcerias comerciais</div>
+  <div class="s-title">Oportunidades <em>Comerciais</em></div>
+  <div class="op-grid">
+    <div class="op-item"><div class="op-icon">📢</div><div><div class="op-title">Publi em Reels</div><div class="op-desc">Inserção natural da sua marca em vídeos com alto potencial viral. Formato que já provou alcançar +200 mil views organicamente.</div></div></div>
+    <div class="op-item"><div class="op-icon">🏠</div><div><div class="op-title">Divulgação Imobiliária</div><div class="op-desc">Apresentação de empreendimentos e lançamentos para uma audiência 60% localizada em Nova Iguaçu — o público comprador.</div></div></div>
+    <div class="op-item"><div class="op-icon">📍</div><div><div class="op-title">Conteúdo Patrocinado Local</div><div class="op-desc">Integração da sua marca no universo de Nova Iguaçu, com storytelling autêntico e alto engajamento da comunidade.</div></div></div>
+    <div class="op-item"><div class="op-icon">🎯</div><div><div class="op-title">Menção em Stories</div><div class="op-desc">Divulgação direta e personalizada para os seguidores mais engajados do perfil.</div></div></div>
+  </div>
+  <div class="ftag">@inaciobroker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contato">
+  <div class="cta-image">
+    <img src="assets/foto-podcast.webp" alt="Inácio Broker">
+    <div class="cta-image-overlay"></div>
+  </div>
+  <div class="cta-radial"></div>
+  <div class="cta-ring"></div>
+  <div class="cta-content">
+    <div class="cta-eyebrow">Vamos trabalhar juntos</div>
+    <div class="cta-title">Vamos <em>juntos?</em></div>
+    <p class="cta-body">Se a sua marca quer falar com Nova Iguaçu e a Baixada Fluminense de forma autêntica, você está no lugar certo. Entre em contato e vamos criar algo incrível.</p>
+    <div class="cta-buttons">
+      <a class="cta-wa" href="https://wa.me/+5521970918421?text=Ol%C3%A1%20Matheus%2C%20vi%20seu%20M%C3%ADdia%20Kit%2C%20tenho%20interesse%20em%20fazer%20uma%20publi%2C%20podemos%20conversar%3F" target="_blank">📲 Entrar em contato</a>
+      <div class="cta-ig">Instagram: <strong>@inaciobroker</strong></div>
+    </div>
+  </div>
+  <div class="ftag">Mídia Kit · Inácio Broker</div>
+  <div class="fyear">2026</div>
+</section>
+
+<script>
+function toggleNav(){document.getElementById('navDrawer').classList.toggle('open')}
+function closeNav(){document.getElementById('navDrawer').classList.remove('open')}
+document.addEventListener('click',function(e){
+  var d=document.getElementById('navDrawer');
+  if(d.classList.contains('open')&&!e.target.closest('nav')&&!e.target.closest('#navDrawer'))d.classList.remove('open');
+});
+</script>
+</body>
+</html>
