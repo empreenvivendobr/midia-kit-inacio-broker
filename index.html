@@ -227,9 +227,9 @@ nav{
   .nav-drawer{display:none!important}
 
   /* HERO desktop */
-  .hero{display:grid;grid-template-columns:45% 55%;min-height:100vh;flex-direction:unset}
-  .hero-photo{flex:unset;height:auto;background:var(--black)}
-  .hero-photo img{object-fit:contain;object-position:center top}
+  .hero{display:grid;grid-template-columns:45% 55%;height:100vh;min-height:unset;flex-direction:unset;overflow:hidden}
+  .hero-photo{flex:unset;height:100vh;background:var(--black);overflow:hidden}
+  .hero-photo img{height:100%;width:100%;object-fit:contain;object-position:center top}
   .hero-photo-vignette{background:linear-gradient(to right,transparent 60%,var(--black) 100%)}
   .hero-photo-bottom{height:200px}
   .hero-deco{font-size:clamp(120px,20vw,320px);left:10%}
